@@ -26,13 +26,13 @@ public class UserController {
     @Autowired
     private UserService userService;
     
-    @Autowired
+    @Autowired(required = false)
     private DriverService driverService;
 
-    @Autowired
+    @Autowired(required = false)
     private CompanyService companyService;
 
-    @Autowired
+    @Autowired(required = false)
     private VehicleService vehicleService;
 
     // ==================== REGISTRATION ====================
@@ -88,12 +88,12 @@ public class UserController {
         Person loggedInPerson = userService.login(email, password);
         
         // If not a passenger, check drivers
-        if (loggedInPerson == null) {
+        if (loggedInPerson == null && driverService != null) {
             loggedInPerson = driverService.login(email, password);
         }
 
         // If not a driver, check companies
-        if (loggedInPerson == null) {
+        if (loggedInPerson == null && companyService != null) {
             loggedInPerson = companyService.login(email, password);
         }
 
@@ -124,7 +124,7 @@ public class UserController {
         // Company setup check
         if ("Company".equalsIgnoreCase(user.getRole())) {
             boolean setupDone = Boolean.TRUE.equals(session.getAttribute("setupDone"));
-            if (!setupDone) {
+            if (!setupDone && vehicleService != null) {
                 if (vehicleService.getVehiclesByOwnerId(user.getId()).isEmpty()) {
                     return "redirect:/company/setup";
                 } else {
@@ -190,7 +190,7 @@ public class UserController {
 
             if (currentUser instanceof Passenger) {
                 userService.update((Passenger) currentUser);
-            } else if (currentUser instanceof Driver) {
+            } else if (currentUser instanceof Driver && driverService != null) {
                 Driver driver = (Driver) currentUser;
                 if (licenseNumber != null && !licenseNumber.isEmpty()) {
                     driver.setLicenseNumber(licenseNumber);
@@ -287,7 +287,7 @@ public class UserController {
         if (currentUser != null) {
             if (currentUser instanceof Passenger) {
                 userService.delete(currentUser.getId());
-            } else if (currentUser instanceof Driver) {
+            } else if (currentUser instanceof Driver && driverService != null) {
                 driverService.delete(currentUser.getId());
             }
             session.invalidate();
