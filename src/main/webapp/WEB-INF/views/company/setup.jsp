@@ -211,7 +211,7 @@
 
     <div class="wizard">
         <div class="wizard-header">
-            <h1>Ã°Å¸ÂÂ¢ Welcome, ${company.name}!</h1>
+            <h1>🏢 Welcome, ${company.name}!</h1>
             <p>Let's get your fleet set up. It only takes 2 steps!</p>
         </div>
         
@@ -236,57 +236,57 @@
                     <h2 style="margin-top: 30px; font-size: 1.5rem;">How many vehicles do you have?</h2>
                     
                     <div class="counter-row">
-                        <div class="counter-label">Ã°Å¸â€ºÂº Tuk-Tuk <span>Three-wheeler</span></div>
+                        <div class="counter-label">🛺 Tuk-Tuk <span>Three-wheeler</span></div>
                         <div class="counter-controls">
-                            <button type="button" class="cnt-btn" onclick="change('tuk',-1)">Ã¢Ë†â€™</button>
+                            <button type="button" class="cnt-btn" onclick="change('tuk',-1)">−</button>
                             <span class="cnt-val" id="tuk-val">0</span>
                             <button type="button" class="cnt-btn" onclick="change('tuk',1)">+</button>
                         </div>
                     </div>
                     <div class="counter-row">
-                        <div class="counter-label">Ã°Å¸ÂÂÃ¯Â¸Â Motorbike <span>Fast, 1 passenger</span></div>
+                        <div class="counter-label">🏍️ Motorbike <span>Fast, 1 passenger</span></div>
                         <div class="counter-controls">
-                            <button type="button" class="cnt-btn" onclick="change('moto',-1)">Ã¢Ë†â€™</button>
+                            <button type="button" class="cnt-btn" onclick="change('moto',-1)">−</button>
                             <span class="cnt-val" id="moto-val">0</span>
                             <button type="button" class="cnt-btn" onclick="change('moto',1)">+</button>
                         </div>
                     </div>
                     <div class="counter-row">
-                        <div class="counter-label">Ã°Å¸Å¡â€” Mini Car <span>Small car, up to 4 passengers</span></div>
+                        <div class="counter-label">🚗 Mini Car <span>Small car, up to 4 passengers</span></div>
                         <div class="counter-controls">
-                            <button type="button" class="cnt-btn" onclick="change('mini',-1)">Ã¢Ë†â€™</button>
+                            <button type="button" class="cnt-btn" onclick="change('mini',-1)">−</button>
                             <span class="cnt-val" id="mini-val">0</span>
                             <button type="button" class="cnt-btn" onclick="change('mini',1)">+</button>
                         </div>
                     </div>
                     <div class="counter-row">
-                        <div class="counter-label">Ã°Å¸Å¡Ëœ Sedan <span>Comfortable, up to 4 passengers</span></div>
+                        <div class="counter-label">🚙 Sedan <span>Comfortable, up to 4 passengers</span></div>
                         <div class="counter-controls">
-                            <button type="button" class="cnt-btn" onclick="change('sedan',-1)">Ã¢Ë†â€™</button>
+                            <button type="button" class="cnt-btn" onclick="change('sedan',-1)">−</button>
                             <span class="cnt-val" id="sedan-val">0</span>
                             <button type="button" class="cnt-btn" onclick="change('sedan',1)">+</button>
                         </div>
                     </div>
                     <div class="counter-row">
-                        <div class="counter-label">Ã¢Å“Â¨ Premium <span>Superior comfort & legroom</span></div>
+                        <div class="counter-label">✨ Premium <span>Superior comfort & legroom</span></div>
                         <div class="counter-controls">
-                            <button type="button" class="cnt-btn" onclick="change('premium',-1)">Ã¢Ë†â€™</button>
+                            <button type="button" class="cnt-btn" onclick="change('premium',-1)">−</button>
                             <span class="cnt-val" id="premium-val">0</span>
                             <button type="button" class="cnt-btn" onclick="change('premium',1)">+</button>
                         </div>
                     </div>
                     <div class="counter-row">
-                        <div class="counter-label">Ã°Å¸Å¡Â Van/SUV <span>Large, up to 8 passengers</span></div>
+                        <div class="counter-label">🚐 Van/SUV <span>Large, up to 8 passengers</span></div>
                         <div class="counter-controls">
-                            <button type="button" class="cnt-btn" onclick="change('van',-1)">Ã¢Ë†â€™</button>
+                            <button type="button" class="cnt-btn" onclick="change('van',-1)">−</button>
                             <span class="cnt-val" id="van-val">0</span>
                             <button type="button" class="cnt-btn" onclick="change('van',1)">+</button>
                         </div>
                     </div>
                     <div class="counter-row">
-                        <div class="counter-label">Ã°Å¸Å½Â© Luxury <span>High-end premium experience</span></div>
+                        <div class="counter-label">🎩 Luxury <span>High-end premium experience</span></div>
                         <div class="counter-controls">
-                            <button type="button" class="cnt-btn" onclick="change('luxury',-1)">Ã¢Ë†â€™</button>
+                            <button type="button" class="cnt-btn" onclick="change('luxury',-1)">−</button>
                             <span class="cnt-val" id="luxury-val">0</span>
                             <button type="button" class="cnt-btn" onclick="change('luxury',1)">+</button>
                         </div>
@@ -295,7 +295,7 @@
                     <div class="total-box">Total Fleet: <strong id="total-val">0</strong> vehicles</div>
                     
                     <div class="btn-row" style="margin-top: 30px;">
-                        <button type="button" class="btn btn-next" onclick="goToStep2()">Next Step Ã¢â€ â€™</button>
+                        <button type="button" class="btn btn-next" onclick="goToStep2()">Next Step →</button>
                     </div>
                 </div>
 
@@ -315,8 +315,8 @@
                     <input type="hidden" name="luxuryCount" id="luxuryInput" value="0">
                     
                     <div class="btn-row">
-                        <button type="button" class="btn btn-back" onclick="goToStep1()">Ã¢â€ Â Go Back</button>
-                        <button type="submit" class="btn btn-finish">Ã¢Å“â€¦ Finish Setup</button>
+                        <button type="button" class="btn btn-back" onclick="goToStep1()">← Go Back</button>
+                        <button type="submit" class="btn btn-finish">✅ Finish Setup</button>
                     </div>
                 </div>
 
@@ -326,7 +326,7 @@
 
 <script>
     const counts = { tuk: 0, moto: 0, mini: 0, sedan: 0, premium: 0, van: 0, luxury: 0 };
-    const labels = { tuk: 'Ã°Å¸â€ºÂº Tuk-Tuk', moto: 'Ã°Å¸ÂÂÃ¯Â¸Â Motorbike', mini: 'Ã°Å¸Å¡â€” Mini Car', sedan: 'Ã°Å¸Å¡Ëœ Sedan', premium: 'Ã¢Å“Â¨ Premium', van: 'Ã°Å¸Å¡Â Van/SUV', luxury: 'Ã°Å¸Å½Â© Luxury' };
+    const labels = { tuk: '🛺 Tuk-Tuk', moto: '🏍️ Motorbike', mini: '🚗 Mini Car', sedan: '🚙 Sedan', premium: '✨ Premium', van: '🚐 Van/SUV', luxury: '🎩 Luxury' };
     
     function change(type, delta) {
         counts[type] = Math.max(0, counts[type] + delta);

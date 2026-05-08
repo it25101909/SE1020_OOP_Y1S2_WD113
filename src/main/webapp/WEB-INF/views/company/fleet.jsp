@@ -240,12 +240,12 @@
     <div class="orb orb-2"></div>
 
     <div class="top-nav">
-        <a href="${pageContext.request.contextPath}/home">Ã°Å¸Å¡â€¢ Zip<span>SL</span></a>
-        <a href="${pageContext.request.contextPath}/home" class="back-link">Ã¢â€ Â Back to Dashboard</a>
+        <a href="${pageContext.request.contextPath}/home">🚀 Zip<span>SL</span></a>
+        <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
     </div>
     
     <div class="header-section">
-        <h2>Ã°Å¸ÂÂ¢ Manage Your Fleet</h2>
+        <h2>🏢 Manage Your Fleet</h2>
         <p>Total Vehicles: <strong>${fleet.size()}</strong></p>
     </div>
 
