@@ -89,6 +89,25 @@
             transition: 0.3s;
         }
         .back-link:hover { color: white; }
+
+        .logout-btn-nav {
+            background: rgba(239, 68, 68, 0.1);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            padding: 8px 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .logout-btn-nav:hover {
+            background: #ef4444;
+            color: white !important;
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
+        }
         
         .container { 
             max-width: 1100px; 
@@ -241,7 +260,10 @@
 
     <div class="top-nav">
         <a href="${pageContext.request.contextPath}/home">🚀 Zip<span>SL</span></a>
-        <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
+        <div style="display: flex; gap: 20px; align-items: center; z-index: 9999;">
+            <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
+            <a href="${pageContext.request.contextPath}/logout" class="logout-btn-nav">Log Out</a>
+        </div>
     </div>
     
     <div class="header-section">

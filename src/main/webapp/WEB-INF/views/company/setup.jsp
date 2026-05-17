@@ -25,11 +25,53 @@
             color: var(--text-main);
             min-height: 100vh; 
             display: flex; 
+            flex-direction: column;
             align-items: center; 
-            justify-content: center; 
+            justify-content: flex-start; 
             margin: 0; 
-            padding: 20px; 
+            padding: 0 20px 60px 20px; 
             overflow-x: hidden;
+        }
+
+        .top-nav { 
+            width: 100%; 
+            max-width: 1100px;
+            padding: 20px 0; 
+            box-sizing: border-box; 
+            margin-bottom: 40px; 
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-nav a { 
+            color: var(--text-main); 
+            font-size: 24px; 
+            font-weight: 800; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        .top-nav a span { color: var(--primary); }
+
+        .logout-btn-nav {
+            background: rgba(239, 68, 68, 0.1);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            padding: 8px 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .logout-btn-nav:hover {
+            background: #ef4444;
+            color: white !important;
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
         }
         
         /* Ambient Orbs */
@@ -208,6 +250,11 @@
 
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
+
+    <div class="top-nav">
+        <a href="${pageContext.request.contextPath}/home">🚕 Zip<span>SL</span></a>
+        <a href="${pageContext.request.contextPath}/logout" class="logout-btn-nav">Log Out</a>
+    </div>
 
     <div class="wizard">
         <div class="wizard-header">
