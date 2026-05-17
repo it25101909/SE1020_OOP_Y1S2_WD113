@@ -34,6 +34,7 @@
         [data-theme="light"] .nav-card p { color: #4a5568; }
         [data-theme="light"] .header h1 { background: linear-gradient(90deg,#1a1a2e,#2d3a6e); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
         [data-theme="light"] .header p { color: #4a5568; }
+        [data-theme="light"] .dashboard-subtitle { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.06); color: #4a5568; }
         [data-theme="light"] .logout-btn { background:rgba(239,68,68,0.1); color:#c53030; border-color:rgba(239,68,68,0.3); }
         [data-theme="light"] .contact-btn { background:rgba(249,115,22,0.1); color:#ea580c; border-color:rgba(249,115,22,0.3); }
         [data-theme="light"] .bg-night { opacity: 0; pointer-events: none; }
@@ -136,6 +137,29 @@
             color: var(--text-muted);
             font-size: 1.2rem;
             font-weight: 300;
+        }
+
+        .dashboard-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            padding: 8px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin-top: 15px !important;
+        }
+
+        .dashboard-subtitle span {
+            color: var(--primary);
+            font-weight: 700;
+            background: linear-gradient(90deg, #f97316, #fdba74);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .dashboard-container {
@@ -333,7 +357,7 @@
     <div style="width: 100%; padding: 60px 20px 80px; text-align: center; position: relative; z-index: 10; background: radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.18) 0%, transparent 70%);">
         <div class="header" style="margin: 0;">
             <h1>Welcome back, <span style="-webkit-text-fill-color: var(--primary); background: none;">${loggedInUser.name}!</span></h1>
-            <p>Your personal Zip SL Dashboard</p>
+            <p class="dashboard-subtitle">Your personal <span>Zip SL</span> Dashboard</p>
         </div>
     </div>
 
