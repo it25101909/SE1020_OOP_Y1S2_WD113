@@ -28,12 +28,6 @@ public class DriverController {
     @Autowired
     private VehicleService vehicleService;
 
-    @GetMapping
-    public String getAllDrivers(Model model) {
-        model.addAttribute("drivers", driverService.getAll());
-        return "drivers/driver-list";
-    }
-
     //handles http get requests
     //get is used to retrieve data
     @GetMapping
