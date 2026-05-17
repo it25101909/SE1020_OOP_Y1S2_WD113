@@ -52,25 +52,13 @@
         [data-theme="light"] .ride-option h4 { color: #1a1a2e; }
 
         #theme-toggle {
-            position: fixed;
-            top: 18px;
-            right: 22px;
-            z-index: 9999;
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(12px);
-            border-radius: 50px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: var(--card-bg); border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px); border-radius: 50px;
+            padding: 8px 16px; font-size: 0.9rem; cursor: pointer;
+            color: var(--text-main); font-family: 'Outfit', sans-serif;
+            font-weight: 600; display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10;
         }
         #theme-toggle:hover { transform: translateY(-2px) scale(1.05); border-color: var(--primary); }
 
@@ -102,7 +90,6 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
     <style>
         body { 
             font-family: 'Outfit', sans-serif; 
@@ -193,7 +180,7 @@
         }
         #map { height: 100%; width: 100%; }
         
-        h2 { color: white; text-align: center; margin-bottom: 25px; margin-top: 0; font-weight: 700; }
+        h2 { color: var(--text-main); text-align: center; margin-bottom: 25px; margin-top: 0; font-weight: 700; }
         .form-group { margin-bottom: 18px; position: relative; }
         label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-muted); font-size: 13px; }
         
@@ -322,7 +309,6 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
 
 
     <!-- Dynamic Backgrounds -->
@@ -341,7 +327,10 @@
 
     <div class="top-nav">
         <a href="${pageContext.request.contextPath}/home">🚕 Zip<span>SL</span></a>
-        <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+            <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
+        </div>
     </div>
 
     <div class="main-container">

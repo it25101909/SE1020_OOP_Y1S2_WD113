@@ -47,27 +47,13 @@
         [data-theme="light"] .booking-detail span { color: #4a5568; }
 
         #theme-toggle {
-            position: fixed;
-            top: 18px;
-            right: 22px;
-            z-index: 9999;
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(12px);
-            border-radius: 50px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            font-weight: 600;
-            position: fixed; top: 18px; right: 22px; z-index: 9999;
             background: var(--card-bg); border: 1px solid var(--glass-border);
             backdrop-filter: blur(12px); border-radius: 50px;
             padding: 8px 16px; font-size: 0.9rem; cursor: pointer;
             color: var(--text-main); font-family: 'Outfit', sans-serif;
             font-weight: 600; display: flex; align-items: center; gap: 8px;
             transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10;
         }
         #theme-toggle:hover { transform: translateY(-2px) scale(1.05); border-color: var(--primary); }
     </style>
@@ -94,7 +80,6 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
     <style>
         body { 
             font-family: 'Outfit', sans-serif; 
@@ -156,7 +141,7 @@
             z-index: 10;
         }
         
-        h2 { color: white; text-align: center; margin-bottom: 40px; margin-top: 0; font-size: 2.5rem; font-weight: 700; }
+        h2 { color: var(--text-main); text-align: center; margin-bottom: 40px; margin-top: 0; font-size: 2.5rem; font-weight: 700; }
         
         .booking-card { 
             background: var(--glass-bg); 
@@ -177,7 +162,7 @@
             background: rgba(255, 255, 255, 0.08);
         }
         
-        .locations { font-size: 1.2rem; color: white; margin-bottom: 12px; font-weight: 700; }
+        .locations { font-size: 1.2rem; color: var(--text-main); margin-bottom: 12px; font-weight: 700; }
         .details { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 18px; line-height: 1.6; }
         .details strong { color: #cbd5e1; }
         
@@ -236,7 +221,7 @@
             border-radius: 20px; 
             border: 1px solid var(--glass-border);
         }
-        .no-bookings h3 { color: white; margin-bottom: 10px; font-size: 1.5rem; }
+        .no-bookings h3 { color: var(--text-main); margin-bottom: 10px; font-size: 1.5rem; }
         .no-bookings p { color: var(--text-muted); margin-bottom: 25px; }
         .btn-primary { 
             background: var(--primary); 
@@ -289,7 +274,6 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
 
 
     <!-- Dynamic Backgrounds -->
@@ -318,9 +302,9 @@
             <div class="booking-card">
                 <div class="locations">${ride.pickupLocation} ➔ ${ride.dropLocation}</div>
                 <div class="details">
-                    <strong style="color: white;">Vehicle:</strong> ${ride.requestedVehicleType} &nbsp;&bull;&nbsp; 
-                    <strong style="color: white;">Time:</strong> ${ride.scheduledTime} &nbsp;&bull;&nbsp; 
-                    <strong style="color: white;">Company:</strong> ${ride.requestedCooperation}
+                    <strong style="color: var(--text-main);">Vehicle:</strong> ${ride.requestedVehicleType} &nbsp;&bull;&nbsp; 
+                    <strong style="color: var(--text-main);">Time:</strong> ${ride.scheduledTime} &nbsp;&bull;&nbsp; 
+                    <strong style="color: var(--text-main);">Company:</strong> ${ride.requestedCooperation}
                 </div>
                 <div class="fare">
                     <c:choose>
