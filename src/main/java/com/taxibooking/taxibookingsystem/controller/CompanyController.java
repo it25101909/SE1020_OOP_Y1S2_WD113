@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +19,7 @@ import java.util.UUID;
 public class CompanyController {
 
     @Autowired(required = false)
+    @Autowired
     private VehicleService vehicleService;
 
     @Autowired
@@ -67,7 +67,7 @@ public class CompanyController {
         for (int i = 0; i < count; i++) {
             String vId = "V-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
             Vehicle v = new Vehicle(vId, ownerId, "AUTO-" + (i + 1), type + " Vehicle", type);
-            if (vehicleService != null) vehicleService.add(v);
+            vehicleService.add(v);
         }
     }
 
@@ -83,8 +83,17 @@ public class CompanyController {
         List<Vehicle> fleet = new ArrayList<>();
         if (vehicleService != null) {
             fleet = vehicleService.getVehiclesByOwnerId(user.getId());
+        boolean setupDone = Boolean.TRUE.equals(session.getAttribute("setupDone"));
+        if (!setupDone) {
+            List<Vehicle> existing = vehicleService.getVehiclesByOwnerId(user.getId());
+            if (existing.isEmpty()) {
+                return "redirect:/company/setup";
+            } else {
+                session.setAttribute("setupDone", true);
+            }
         }
 
+        List<Vehicle> fleet = vehicleService.getVehiclesByOwnerId(user.getId());
         model.addAttribute("fleet", fleet);
         model.addAttribute("company", user);
         return "company/fleet";
@@ -103,6 +112,7 @@ public class CompanyController {
         String vId = "V-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Vehicle vehicle = new Vehicle(vId, user.getId(), plateNumber, modelName, type);
         if (vehicleService != null) vehicleService.add(vehicle);
+        vehicleService.add(vehicle);
 
         return "redirect:/company/fleet?status=added";
     }
@@ -115,6 +125,7 @@ public class CompanyController {
         }
 
         if (vehicleService != null) vehicleService.delete(vehicleId);
+        vehicleService.delete(vehicleId);
         return "redirect:/company/fleet?status=removed";
     }
 

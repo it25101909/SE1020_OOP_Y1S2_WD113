@@ -31,7 +31,7 @@
 <body>
 
     <div class="top-nav">
-        <a href="${pageContext.request.contextPath}/home">Ã°Å¸Å¡â€¢ Zip SL</a>
+        <a href="${pageContext.request.contextPath}/home">🚕 Zip SL</a>
     </div>
 
     <div class="container">
@@ -40,7 +40,7 @@
 
         <c:if test="${empty companies}">
             <div class="no-companies">
-                <div class="company-icon" style="margin: 0 auto 20px;">Ã°Å¸ÂÂ¢</div>
+                <div class="company-icon" style="margin: 0 auto 20px;">🏢</div>
                 <h3>No taxi companies registered yet.</h3>
                 <p>Please check back later or contact support.</p>
                 <a href="${pageContext.request.contextPath}/home" style="color: #3498db; font-weight: bold; text-decoration: none;">Go Back</a>
@@ -50,15 +50,15 @@
         <div class="company-grid">
             <c:forEach var="comp" items="${companies}">
                 <a href="${pageContext.request.contextPath}/book-taxi?companyId=${comp.id}" class="company-card">
-                    <div class="company-icon">Ã°Å¸ÂÂ¢</div>
+                    <div class="company-icon">🏢</div>
                     <div class="company-name">${comp.name}</div>
-                    <div class="company-info">Ã°Å¸â€œÅ¾ ${comp.phone}<br>Ã¢Å“â€°Ã¯Â¸Â ${comp.email}</div>
-                    <div class="btn-select">View Availability Ã¢â€ â€™</div>
+                    <div class="company-info">📞 ${comp.phone}<br>✉️ ${comp.email}</div>
+                    <div class="btn-select">View Availability →</div>
                 </a>
             </c:forEach>
         </div>
 
-        <a href="${pageContext.request.contextPath}/home" style="color: #64748b; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 40px;">Ã¢â€ Â Back to Home</a>
+        <a href="${pageContext.request.contextPath}/home" style="color: #64748b; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 40px;">← Back to Home</a>
     </div>
 
 </body>

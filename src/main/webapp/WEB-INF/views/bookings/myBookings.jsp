@@ -75,7 +75,7 @@
         function updateToggleButton(theme) {
             const btn = document.getElementById('theme-toggle');
             if (btn) {
-                btn.innerHTML = theme === 'light' ? 'Ã¢Ëœâ‚¬Ã¯Â¸Â Light' : 'Ã°Å¸Å’â„¢ Dark';
+                btn.innerHTML = theme === 'light' ? '☀️ Light' : '🌙 Dark';
             }
         }
         function toggleTheme(){
@@ -94,7 +94,7 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">Ã°Å¸Å’â„¢ Dark</button>
+    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
     <style>
         body { 
             font-family: 'Outfit', sans-serif; 
@@ -289,7 +289,7 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">&#9790; Dark</button>
+    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
 
 
     <!-- Dynamic Backgrounds -->
@@ -306,7 +306,7 @@
     <div class="orb orb-2"></div>
 
     <div class="top-nav">
-        <a href="${pageContext.request.contextPath}/home">Ã°Å¸Å¡â€¢ Zip<span>SL</span></a>
+        <a href="${pageContext.request.contextPath}/home">🚕 Zip<span>SL</span></a>
     </div>
 
     <div class="container">
@@ -316,7 +316,7 @@
 
         <c:forEach var="ride" items="${bookings}">
             <div class="booking-card">
-                <div class="locations">${ride.pickupLocation} Ã¢Å¾â€ ${ride.dropLocation}</div>
+                <div class="locations">${ride.pickupLocation} ➔ ${ride.dropLocation}</div>
                 <div class="details">
                     <strong style="color: white;">Vehicle:</strong> ${ride.requestedVehicleType} &nbsp;&bull;&nbsp; 
                     <strong style="color: white;">Time:</strong> ${ride.scheduledTime} &nbsp;&bull;&nbsp; 
@@ -374,7 +374,7 @@
         </c:if>
 
         <div style="text-align: center; margin-top: 40px;">
-            <a href="${pageContext.request.contextPath}/home" class="back-link">Ã¢â€ Â Back to Dashboard</a>
+            <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
         </div>
     </div>
 </body>
