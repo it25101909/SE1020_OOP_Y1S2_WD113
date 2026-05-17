@@ -17,6 +17,8 @@
             --glass-bg: rgba(20, 20, 25, 0.6);
             --glass-border: rgba(255, 255, 255, 0.1);
             --card-bg: rgba(20,20,25,0.6);
+            --text-assignments: #38bdf8;
+            --text-transit: var(--primary);
         }
         /* ===== LIGHT THEME ===== */
         [data-theme="light"] {
@@ -25,6 +27,8 @@
             --glass-bg: rgba(255,255,255,0.8);
             --glass-border: rgba(0,0,0,0.12);
             --card-bg: rgba(255,255,255,0.85);
+            --text-assignments: #0284c7;
+            --text-transit: #ea580c;
         }
         [data-theme="light"] body { background: #dde3f0; color: #1a1a2e; }
         [data-theme="light"] .bg-night { opacity: 0; pointer-events: none; }
@@ -47,13 +51,13 @@
         [data-theme="light"] .order-detail span { color: #4a5568; }
 
         #theme-toggle {
-            position: fixed; top: 18px; right: 22px; z-index: 9999;
             background: var(--card-bg); border: 1px solid var(--glass-border);
             backdrop-filter: blur(12px); border-radius: 50px;
             padding: 8px 16px; font-size: 0.9rem; cursor: pointer;
             color: var(--text-main); font-family: 'Outfit', sans-serif;
             font-weight: 600; display: flex; align-items: center; gap: 8px;
             transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10;
         }
         #theme-toggle:hover { transform: translateY(-2px) scale(1.05); border-color: var(--primary); }
     </style>
@@ -80,7 +84,6 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
     <style>
         body { 
             font-family: 'Outfit', sans-serif; 
@@ -142,7 +145,7 @@
             z-index: 10;
         }
         
-        h2 { color: white; margin-bottom: 5px; margin-top: 0; font-weight: 700; font-size: 26px; }
+        h2 { color: var(--text-main); margin-bottom: 5px; margin-top: 0; font-weight: 700; font-size: 26px; }
         .subtitle { color: var(--text-muted); margin-bottom: 25px; font-size: 1rem; }
         
         .task-card { 
@@ -167,7 +170,7 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .details h4 { color: white; margin: 0 0 10px 0; font-size: 1.2rem; }
+        .details h4 { color: var(--text-main); margin: 0 0 10px 0; font-size: 1.2rem; }
         .details p { margin: 6px 0; color: #cbd5e1; font-size: 0.95rem; }
         
         .badge { background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 12px; border: 1px solid rgba(16, 185, 129, 0.3); }
@@ -202,7 +205,7 @@
             border: 1px solid var(--glass-border);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
         }
-        .empty-msg h3 { color: white; margin-bottom: 10px; }
+        .empty-msg h3 { color: var(--text-main); margin-bottom: 10px; }
         
         .info-bar { 
             background: rgba(56, 189, 248, 0.1); 
@@ -247,28 +250,9 @@
             input[type="text"] { width: 100%; box-sizing: border-box; }
         }
     </style>
-    <script>
-        (function(){
-            var t = localStorage.getItem('kc-theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', t);
-        })();
-        function toggleTheme(){
-            var html = document.documentElement;
-            var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', next);
-            localStorage.setItem('kc-theme', next);
-            var btn = document.getElementById('theme-toggle');
-            btn.innerHTML = next === 'dark' ? '&#9790; Dark' : '&#9788; Light';
-        }
-        window.onload = function() {
-            var t = localStorage.getItem('kc-theme') || 'dark';
-            var btn = document.getElementById('theme-toggle');
-            if(btn) btn.innerHTML = t === 'dark' ? '&#9790; Dark' : '&#9788; Light';
-        }
-    </script>
+    
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
 
 
     <!-- Dynamic Backgrounds -->
@@ -286,7 +270,10 @@
 
     <div class="top-nav">
         <a href="${pageContext.request.contextPath}/home">🚕 Zip<span>SL</span></a>
-        <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+            <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
+        </div>
     </div>
 
     <div class="container">
@@ -343,7 +330,7 @@
 
         <br><br>
         <div style="height: 120px; border-radius: 16px; margin-bottom: 20px; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=1000') center/cover;"></div>
-        <h2 style="color: #38bdf8;">My Active Assignments</h2>
+        <h2 style="color: var(--text-assignments);">My Active Assignments</h2>
         <p class="subtitle">Rides where you are on the way to pick up the passenger.</p>
 
         <c:set var="hasAccepted" value="false" />
@@ -378,7 +365,7 @@
 
         <br><br>
         <div style="height: 120px; border-radius: 16px; margin-bottom: 20px; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1506784951209-243e05a8baf1?auto=format&fit=crop&q=80&w=1000') center/cover;"></div>
-        <h2 style="color: var(--primary);">Passengers in Vehicle</h2>
+        <h2 style="color: var(--text-transit);">Passengers in Vehicle</h2>
         <p class="subtitle">Rides currently in transit.</p>
 
         <c:set var="hasStarted" value="false" />
