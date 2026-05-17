@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+//emplements web requests
 @Controller
 @RequestMapping("/drivers")
 public class DriverController {
 
+    //it automatically creates objects
     @Autowired
     private DriverService driverService;
 
@@ -32,6 +34,20 @@ public class DriverController {
         return "drivers/driver-list";
     }
 
+    //handles http get requests
+    //get is used to retrieve data
+    @GetMapping
+
+    //Model is use to send data from controller to frontend page
+    public String getAllDrivers(Model model) {
+
+        //this sends driver data to the html page  , get all drivers from file
+        model.addAttribute("drivers", driverService.getAll());
+        //add data into model object.think of model as data container sent to the view
+        return "drivers/driver-list";
+    }
+
+    //opens registration form
     @GetMapping("/register")
     public String showRegisterForm() {
         return "drivers/register";
