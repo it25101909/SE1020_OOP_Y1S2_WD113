@@ -328,12 +328,12 @@ public class BookingController {
 
         // Reminders and Notes
         if (hasAnyActiveAssignment) {
-            model.addAttribute("availabilityNote", "Ã°Å¸â€â€™ Task List Locked: Finish your current assignment to see more 'Now' requests.");
+            model.addAttribute("availabilityNote", "🔒 Task List Locked: Finish your current assignment to see more 'Now' requests.");
         }
 
         if (!myScheduledRides.isEmpty()) {
             String times = myScheduledRides.stream().map(Booking::getScheduledTime).collect(Collectors.joining(", "));
-            model.addAttribute("reminder", "Ã°Å¸â€œÅ’ Upcoming Scheduled Rides: " + times);
+            model.addAttribute("reminder", "📌 Upcoming Scheduled Rides: " + times);
         }
 
         model.addAttribute("availableBookings", matchingBookings);

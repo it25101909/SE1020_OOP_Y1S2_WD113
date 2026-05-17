@@ -35,7 +35,7 @@
 <body>
 
     <div class="container">
-        <h2>Ã°Å¸â€œâ€¹ Ride Booking Records</h2>
+        <h2>📋 Ride Booking Records</h2>
         <div style="margin-bottom: 20px; display: flex; justify-content: flex-end;">
             <form action="/searchBookings" method="get" style="display: flex; gap: 10px;">
                 <input type="text" name="query" placeholder="Search by Booking ID..."
@@ -68,7 +68,7 @@
                         <td><strong>${b.bookingId}</strong></td>
                         <td>${b.userId}</td>
                         <td>${b.driverId}</td>
-                        <td>${b.pickupLocation} Ã¢â€ â€™ ${b.dropLocation}</td>
+                        <td>${b.pickupLocation} → ${b.dropLocation}</td>
                         <td>${b.bookingType}</td>
                         <td>${b.scheduledTime}</td>
                         <td>
@@ -81,13 +81,13 @@
                                     <form action="/updateBookingStatus" method="post">
                                         <input type="hidden" name="bookingId" value="${b.bookingId}">
                                         <input type="hidden" name="status" value="Confirmed">
-                                        <button type="submit" class="btn-action btn-confirm" title="Confirm Booking">Ã¢Å“â€</button>
+                                        <button type="submit" class="btn-action btn-confirm" title="Confirm Booking">✔</button>
                                     </form>
                                 </c:if>
 
                                 <form action="/deleteBooking" method="post" onsubmit="return confirm('Are you sure you want to cancel this booking?');">
                                     <input type="hidden" name="bookingId" value="${b.bookingId}">
-                                    <button type="submit" class="btn-action btn-delete" title="Cancel Booking">Ã¢Å“Ëœ</button>
+                                    <button type="submit" class="btn-action btn-delete" title="Cancel Booking">✘</button>
                                 </form>
                             </div>
                         </td>
@@ -96,7 +96,7 @@
             </tbody>
         </table>
 
-        <a href="/home" class="back-link">Ã¢â€ Â Return to Dashboard</a>
+        <a href="/home" class="back-link">← Return to Dashboard</a>
     </div>
 
 </body>

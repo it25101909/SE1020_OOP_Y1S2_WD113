@@ -79,7 +79,7 @@
         function updateToggleButton(theme) {
             const btn = document.getElementById('theme-toggle');
             if (btn) {
-                btn.innerHTML = theme === 'light' ? 'Ã¢Ëœâ‚¬Ã¯Â¸Â Light' : 'Ã°Å¸Å’â„¢ Dark';
+                btn.innerHTML = theme === 'light' ? '☀️ Light' : '🌙 Dark';
             }
         }
 
@@ -102,7 +102,7 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">Ã°Å¸Å’â„¢ Dark</button>
+    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
     <style>
         body { 
             font-family: 'Outfit', sans-serif; 
@@ -322,7 +322,7 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">&#9790; Dark</button>
+    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
 
 
     <!-- Dynamic Backgrounds -->
@@ -340,8 +340,8 @@
     <div class="orb orb-2"></div>
 
     <div class="top-nav">
-        <a href="${pageContext.request.contextPath}/home">Ã°Å¸Å¡â€¢ Zip<span>SL</span></a>
-        <a href="${pageContext.request.contextPath}/home" class="back-link">Ã¢â€ Â Back to Dashboard</a>
+        <a href="${pageContext.request.contextPath}/home">🚕 Zip<span>SL</span></a>
+        <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
     </div>
 
     <div class="main-container">
@@ -350,7 +350,7 @@
             <h2>Trip Details</h2>
 
             <div id="companyAlert" style="display:none; background: rgba(239, 68, 68, 0.1); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-weight: bold;">
-                Ã°Å¸Å¡Â« Sorry, all vehicles in this company are currently occupied.
+                🚫 Sorry, all vehicles in this company are currently occupied.
             </div>
 
             <c:if test="${param.error == 'same_location'}">
@@ -362,7 +362,7 @@
                     <label>Pickup Location</label>
                     <div style="display: flex; gap: 8px;">
                         <input type="text" id="pickupLocation" name="pickupLocation" placeholder="Type address and press Enter or Search..." required>
-                        <button type="button" class="search-btn" onclick="searchLocation(document.getElementById('pickupLocation').value, 'pickup')">Ã°Å¸â€Â</button>
+                        <button type="button" class="search-btn" onclick="searchLocation(document.getElementById('pickupLocation').value, 'pickup')">🔍</button>
                     </div>
                 </div>
 
@@ -370,7 +370,7 @@
                     <label>Drop Location</label>
                     <div style="display: flex; gap: 8px;">
                         <input type="text" id="dropLocation" name="dropLocation" placeholder="Type address and press Enter or Search..." required>
-                        <button type="button" class="search-btn" onclick="searchLocation(document.getElementById('dropLocation').value, 'drop')">Ã°Å¸â€Â</button>
+                        <button type="button" class="search-btn" onclick="searchLocation(document.getElementById('dropLocation').value, 'drop')">🔍</button>
                     </div>
                 </div>
 
@@ -419,13 +419,13 @@
                 <div class="form-group">
                     <label>Payment Method</label>
                     <select name="paymentMethod" id="paymentMethod" onchange="checkPaymentMethod()">
-                        <option value="Cash">Ã°Å¸â€™Âµ Cash to Driver</option>
+                        <option value="Cash">💵 Cash to Driver</option>
                         <c:choose>
                             <c:when test="${loggedInUser.cardNumber != 'Not Set'}">
-                                <option value="Card">Ã°Å¸â€™Â³ Pay by Card (Ends in ${loggedInUser.cardNumber.substring(loggedInUser.cardNumber.length() - 4)})</option>
+                                <option value="Card">💳 Pay by Card (Ends in ${loggedInUser.cardNumber.substring(loggedInUser.cardNumber.length() - 4)})</option>
                             </c:when>
                             <c:otherwise>
-                                <option value="Card" disabled>Ã°Å¸â€™Â³ Pay by Card (No Card Configured)</option>
+                                <option value="Card" disabled>💳 Pay by Card (No Card Configured)</option>
                             </c:otherwise>
                         </c:choose>
                     </select>
@@ -452,7 +452,7 @@
 
         <!-- Map Container -->
         <div class="map-container">
-            <div class="map-instructions">Ã°Å¸â€œÂ Click map or type address and press Enter</div>
+            <div class="map-instructions">📍 Click map or type address and press Enter</div>
             <div id="map"></div>
         </div>
     </div>
@@ -473,7 +473,7 @@
 
         // Use a darker map tile layer if possible, else standard OSM
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-            attribution: 'Ã‚Â© OpenStreetMap contributors Ã‚Â© CARTO'
+            attribution: '© OpenStreetMap contributors © CARTO'
         }).addTo(map);
 
         var pickupMarker = null;
@@ -752,7 +752,7 @@
                 const types = ['Tuk', 'Moto', 'Mini', 'Sedan', 'Premium', 'Van', 'Luxury'];
                 types.forEach(t => {
                     const isAvail = data.availability[t];
-                    availText += t + ": " + (isAvail ? 'Ã¢Å“â€¦' : 'Ã¢ÂÅ’') + " ";
+                    availText += t + ": " + (isAvail ? '✅' : '❌') + " ";
                     
                     // Disable specific options in dropdown if busy
                     const option = vTypeSelect.querySelector('option[value="' + t + '"]');

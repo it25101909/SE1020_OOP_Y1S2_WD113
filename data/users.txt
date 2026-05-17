@@ -2,3 +2,4 @@ P-40E6F17F,jeewaka Dulanjana,jeewakarathnayake2005@gmail.com,0762321827,2005,Pas
 C-15EE8AF9,jeewaka Dulanjana,jeewakarathnayake2005000@gmail.com,0762321827,2005,Company
 P-64651FBA,Ashan Fernando,ashan@gmail.com,0767404055,ash12345,Passenger,Regular,Not Set,N/A
 P-048A0E3B,Ashan Fernando,ashanfernandotp@gmail.com,0767404055,12345678,Passenger,Regular,Not Set,N/A
+C-172DA19D,Edmond,vid@gmail.com,123456789,2005,Company
