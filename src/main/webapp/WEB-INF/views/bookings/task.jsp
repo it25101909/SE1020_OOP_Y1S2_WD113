@@ -61,7 +61,7 @@
         function updateToggleButton(theme) {
             const btn = document.getElementById('theme-toggle');
             if (btn) {
-                btn.innerHTML = theme === 'light' ? 'Ã¢Ëœâ‚¬Ã¯Â¸Â Light' : 'Ã°Å¸Å’â„¢ Dark';
+                btn.innerHTML = theme === 'light' ? '☀️ Light' : '🌙 Dark';
             }
         }
         function toggleTheme(){
@@ -80,7 +80,7 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">Ã°Å¸Å’â„¢ Dark</button>
+    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
     <style>
         body { 
             font-family: 'Outfit', sans-serif; 
@@ -268,7 +268,7 @@
     </script>
 </head>
 <body>
-    <button id="theme-toggle" onclick="toggleTheme()">&#9790; Dark</button>
+    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
 
 
     <!-- Dynamic Backgrounds -->
@@ -285,8 +285,8 @@
     <div class="orb orb-2"></div>
 
     <div class="top-nav">
-        <a href="${pageContext.request.contextPath}/home">Ã°Å¸Å¡â€¢ Zip<span>SL</span></a>
-        <a href="${pageContext.request.contextPath}/home" class="back-link">Ã¢â€ Â Back to Dashboard</a>
+        <a href="${pageContext.request.contextPath}/home">🚕 Zip<span>SL</span></a>
+        <a href="${pageContext.request.contextPath}/home" class="back-link">← Back to Dashboard</a>
     </div>
 
     <div class="container">
@@ -295,50 +295,50 @@
         <p class="subtitle">Orders matching your fleet will appear here.</p>
 
         <c:if test="${not empty availabilityNote}">
-            <div class="info-bar" style="background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); color: #fbbf24;">Ã°Å¸Å¡Â¨ ${availabilityNote}</div>
+            <div class="info-bar" style="background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); color: #fbbf24;">🚨 ${availabilityNote}</div>
         </c:if>
 
         <c:if test="${not empty reminder}">
-            <div class="info-bar" style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #34d399;">Ã¢ÂÂ° ${reminder}</div>
+            <div class="info-bar" style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #34d399;">⏰ ${reminder}</div>
         </c:if>
 
         <c:if test="${not empty driverVehicleType}">
-            <div class="info-bar">Ã°Å¸Å¡â€” Showing orders for vehicle type: <strong style="color: white;">${driverVehicleType}</strong></div>
+            <div class="info-bar">🚗 Showing orders for vehicle type: <strong style="color: white;">${driverVehicleType}</strong></div>
         </c:if>
 
         <c:if test="${empty availableBookings}">
             <div class="empty-msg">
-                <h3>Ã°Å¸â€œÂ­ No pending rides at the moment.</h3>
+                <h3>📝 No pending rides at the moment.</h3>
                 <p>New requests will show up here when passengers book a ride.</p>
                 <br>
-                <a href="${pageContext.request.contextPath}/tasks" style="color: var(--primary); font-weight: bold; text-decoration: none; padding: 10px 20px; border: 1px solid var(--primary); border-radius: 50px;">Ã°Å¸â€â€ž Refresh Page</a>
+                <a href="${pageContext.request.contextPath}/tasks" style="color: var(--primary); font-weight: bold; text-decoration: none; padding: 10px 20px; border: 1px solid var(--primary); border-radius: 50px;">🔄 Refresh Page</a>
             </div>
         </c:if>
 
         <c:forEach var="task" items="${availableBookings}">
             <div class="task-card">
                 <div class="details">
-                    <h4>Ã°Å¸â€œÂ ${task.pickupLocation} Ã¢Å¾â€ Ã°Å¸ÂÂ ${task.dropLocation}</h4>
+                    <h4>📍 ${task.pickupLocation} ➔ 🏠 ${task.dropLocation}</h4>
                     <p>
                         <span class="badge">${task.requestedVehicleType}</span>
                         <span class="fare-badge">LKR ${task.fare}</span>
-                        &nbsp;Ã¢ÂÂ± ${task.scheduledTime}
+                        &nbsp;⏱ ${task.scheduledTime}
                         <c:if test="${task.bookingType == 'Scheduled'}"><span style="color: var(--primary); font-weight: bold; margin-left: 5px;">(SCHEDULED)</span></c:if>
                     </p>
                     <p style="color: var(--text-muted); font-size: 12px; margin-top: 10px;">Booking ID: ${task.bookingId}</p>
                 </div>
 
                 <form action="${pageContext.request.contextPath}/accept-booking/${task.bookingId}" method="post">
-                    <button type="submit" class="btn-accept">Ã¢Å“â€¦ Accept Ride</button>
+                    <button type="submit" class="btn-accept">✅ Accept Ride</button>
                 </form>
             </div>
         </c:forEach>
 
         <c:if test="${param.error == 'invalid_code'}">
-            <div class="info-bar" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;">Ã¢ÂÅ’ Invalid Verification Code! Please ask the passenger for the correct code.</div>
+            <div class="info-bar" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;">❌ Invalid Verification Code! Please ask the passenger for the correct code.</div>
         </c:if>
         <c:if test="${param.error == 'time_conflict'}">
-            <div class="info-bar" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;">Ã¢ÂÅ’ Time Conflict! You must have at least 6 hours between scheduled rides.</div>
+            <div class="info-bar" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;">❌ Time Conflict! You must have at least 6 hours between scheduled rides.</div>
         </c:if>
 
         <br><br>
@@ -352,11 +352,11 @@
                 <c:set var="hasAccepted" value="true" />
                 <div class="task-card" style="border-left-color: #38bdf8;">
                     <div class="details">
-                        <h4>Ã°Å¸â€œÂ ${task.pickupLocation} Ã¢Å¾â€ Ã°Å¸ÂÂ ${task.dropLocation}</h4>
+                        <h4>📍 ${task.pickupLocation} ➔ 🏠 ${task.dropLocation}</h4>
                         <p>
                             <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border-color: rgba(56, 189, 248, 0.3);">${task.requestedVehicleType}</span>
                             <span class="fare-badge">LKR ${task.fare}</span>
-                            &nbsp;Ã¢ÂÂ± ${task.scheduledTime}
+                            &nbsp;⏱ ${task.scheduledTime}
                         </p>
                         <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">Passenger: ${task.passengerId}</p>
                     </div>
@@ -366,7 +366,7 @@
                         <form action="${pageContext.request.contextPath}/start-booking/${task.bookingId}" method="post">
                             <input type="text" name="code" placeholder="4-digit code" required>
                             <br>
-                            <button type="submit" class="btn-accept" style="background: #0ea5e9; box-shadow: none;">Ã°Å¸Å¡â‚¬ Start Trip</button>
+                            <button type="submit" class="btn-accept" style="background: #0ea5e9; box-shadow: none;">🚀 Start Trip</button>
                         </form>
                     </div>
                 </div>
@@ -387,11 +387,11 @@
                 <c:set var="hasStarted" value="true" />
                 <div class="task-card" style="border-left-color: var(--primary);">
                     <div class="details">
-                        <h4>Ã°Å¸â€œÂ ${task.pickupLocation} Ã¢Å¾â€ Ã°Å¸ÂÂ ${task.dropLocation}</h4>
+                        <h4>📍 ${task.pickupLocation} ➔ 🏠 ${task.dropLocation}</h4>
                         <p>
                             <span class="badge" style="background: rgba(249, 115, 22, 0.2); color: #fdba74; border-color: rgba(249, 115, 22, 0.3);">${task.requestedVehicleType}</span>
                             <span class="fare-badge">LKR ${task.fare}</span>
-                            &nbsp;Ã¢ÂÂ± ${task.scheduledTime}
+                            &nbsp;⏱ ${task.scheduledTime}
                         </p>
                         <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">Passenger: ${task.passengerId}</p>
                     </div>
@@ -399,7 +399,7 @@
                         <span class="badge" style="background: rgba(249, 115, 22, 0.1); color: var(--primary); border-color: transparent; margin-bottom: 12px; display: inline-block;">IN TRANSIT</span>
                         
                         <form action="${pageContext.request.contextPath}/complete-booking/${task.bookingId}" method="post">
-                            <button type="submit" class="btn-accept" style="background: #10b981;">Ã°Å¸ÂÂ Finish Ride</button>
+                            <button type="submit" class="btn-accept" style="background: #10b981;">🏁 Finish Ride</button>
                         </form>
                     </div>
                 </div>
