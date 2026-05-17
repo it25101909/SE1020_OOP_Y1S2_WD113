@@ -69,7 +69,7 @@
 
         .image-side {
             flex: 1;
-            background: linear-gradient(135deg, rgba(249, 115, 22, 0.8), rgba(67, 56, 202, 0.8)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=1000') center/cover;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.8), rgba(67, 56, 202, 0.8)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=1000') center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
