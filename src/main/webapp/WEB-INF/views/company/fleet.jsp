@@ -198,13 +198,18 @@
             border-radius: 16px; 
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
             display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+            flex-direction: column;
+            align-items: stretch;
             border: 1px solid var(--glass-border);
             border-left: 5px solid #0ea5e9; 
             transition: all 0.3s ease;
         }
         .vehicle-card:hover { transform: translateX(5px); background: rgba(255, 255, 255, 0.08); }
+        .vehicle-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         
         .vehicle-card .details h4 { margin: 0 0 8px 0; color: white; font-size: 1.3rem; letter-spacing: 1px; }
         .badge { 
@@ -230,6 +235,61 @@
             transition: 0.3s; 
         }
         .btn-remove:hover { background: #ef4444; color: white; box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4); transform: translateY(-2px); }
+
+        .btn-edit {
+            background: rgba(14, 165, 233, 0.1);
+            color: #7dd3fc;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            font-family: 'Outfit', sans-serif;
+            transition: 0.3s;
+            margin-right: 10px;
+        }
+        .btn-edit:hover { background: #0ea5e9; color: white; box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4); transform: translateY(-2px); }
+
+        .edit-form {
+            display: none;
+            width: 100%;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .edit-form.active { display: block; }
+        .edit-inputs { display: flex; gap: 15px; margin-bottom: 15px; }
+        .edit-inputs .form-group { margin: 0; flex: 1; }
+        
+        .btn-confirm {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            font-family: 'Outfit', sans-serif;
+            transition: 0.3s;
+            margin-right: 10px;
+        }
+        .btn-confirm:hover { background: #16a34a; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4); }
+        
+        .btn-cancel {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            font-family: 'Outfit', sans-serif;
+            transition: 0.3s;
+        }
+        .btn-cancel:hover { background: rgba(255, 255, 255, 0.2); }
         
         .empty-msg { 
             text-align: center; 
@@ -310,17 +370,52 @@
             </c:if>
 
             <c:forEach var="v" items="${fleet}">
-                <div class="vehicle-card">
-                    <div class="details">
-                        <h4>${v.plateNumber}</h4>
-                        <span class="badge">${v.type}</span> &bull; <span style="color: var(--text-muted); font-size: 14px;">${v.model}</span>
+                <div class="vehicle-card" id="card-${v.vehicleId}">
+                    <div class="vehicle-card-header">
+                        <div class="details">
+                            <h4>${v.plateNumber}</h4>
+                            <span class="badge">${v.type}</span> &bull; <span style="color: var(--text-muted); font-size: 14px;">${v.model}</span>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <button type="button" class="btn-edit" onclick="toggleEdit('${v.vehicleId}')">Edit</button>
+                            <form action="${pageContext.request.contextPath}/company/remove-vehicle/${v.vehicleId}" method="post" style="margin: 0;">
+                                <button type="submit" class="btn-remove" onclick="return confirm('Remove this vehicle from your fleet?');">Remove</button>
+                            </form>
+                        </div>
                     </div>
-                    <form action="${pageContext.request.contextPath}/company/remove-vehicle/${v.vehicleId}" method="post">
-                        <button type="submit" class="btn-remove" onclick="return confirm('Remove this vehicle from your fleet?');">Remove</button>
-                    </form>
+                    
+                    <div class="edit-form" id="edit-form-${v.vehicleId}">
+                        <form action="${pageContext.request.contextPath}/company/edit-vehicle/${v.vehicleId}" method="post">
+                            <div class="edit-inputs">
+                                <div class="form-group">
+                                    <label>License Plate</label>
+                                    <input type="text" name="plateNumber" value="${v.plateNumber}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Model / Brand</label>
+                                    <input type="text" name="modelName" value="${v.model}" required>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn-confirm">Confirm</button>
+                                <button type="button" class="btn-cancel" onclick="toggleEdit('${v.vehicleId}')">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </c:forEach>
         </div>
     </div>
+    
+    <script>
+        function toggleEdit(vehicleId) {
+            const form = document.getElementById('edit-form-' + vehicleId);
+            if (form.classList.contains('active')) {
+                form.classList.remove('active');
+            } else {
+                form.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
