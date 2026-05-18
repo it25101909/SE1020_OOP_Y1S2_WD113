@@ -1,4 +1,6 @@
+// Student ID: IT25101909
 package com.taxibooking.taxibookingsystem.controller;
+
 
 import com.taxibooking.taxibookingsystem.model.Company;
 import com.taxibooking.taxibookingsystem.model.Person;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +22,6 @@ import java.util.UUID;
 public class CompanyController {
 
     @Autowired(required = false)
-    @Autowired
     private VehicleService vehicleService;
 
     @Autowired
@@ -64,10 +66,12 @@ public class CompanyController {
     }
 
     private void addVehicles(String ownerId, String type, int count) {
-        for (int i = 0; i < count; i++) {
-            String vId = "V-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-            Vehicle v = new Vehicle(vId, ownerId, "AUTO-" + (i + 1), type + " Vehicle", type);
-            vehicleService.add(v);
+        if (vehicleService != null) {
+            for (int i = 0; i < count; i++) {
+                String vId = "V-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+                Vehicle v = new Vehicle(vId, ownerId, "AUTO-" + (i + 1), type + " Vehicle", type);
+                vehicleService.add(v);
+            }
         }
     }
 
@@ -82,18 +86,18 @@ public class CompanyController {
 
         List<Vehicle> fleet = new ArrayList<>();
         if (vehicleService != null) {
-            fleet = vehicleService.getVehiclesByOwnerId(user.getId());
-        boolean setupDone = Boolean.TRUE.equals(session.getAttribute("setupDone"));
-        if (!setupDone) {
-            List<Vehicle> existing = vehicleService.getVehiclesByOwnerId(user.getId());
-            if (existing.isEmpty()) {
-                return "redirect:/company/setup";
-            } else {
-                session.setAttribute("setupDone", true);
+            boolean setupDone = Boolean.TRUE.equals(session.getAttribute("setupDone"));
+            if (!setupDone) {
+                List<Vehicle> existing = vehicleService.getVehiclesByOwnerId(user.getId());
+                if (existing.isEmpty()) {
+                    return "redirect:/company/setup";
+                } else {
+                    session.setAttribute("setupDone", true);
+                }
             }
+            fleet = vehicleService.getVehiclesByOwnerId(user.getId());
         }
 
-        List<Vehicle> fleet = vehicleService.getVehiclesByOwnerId(user.getId());
         model.addAttribute("fleet", fleet);
         model.addAttribute("company", user);
         return "company/fleet";
@@ -111,8 +115,9 @@ public class CompanyController {
 
         String vId = "V-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Vehicle vehicle = new Vehicle(vId, user.getId(), plateNumber, modelName, type);
-        if (vehicleService != null) vehicleService.add(vehicle);
-        vehicleService.add(vehicle);
+        if (vehicleService != null) {
+            vehicleService.add(vehicle);
+        }
 
         return "redirect:/company/fleet?status=added";
     }
@@ -124,8 +129,9 @@ public class CompanyController {
             return "redirect:/login";
         }
 
-        if (vehicleService != null) vehicleService.delete(vehicleId);
-        vehicleService.delete(vehicleId);
+        if (vehicleService != null) {
+            vehicleService.delete(vehicleId);
+        }
         return "redirect:/company/fleet?status=removed";
     }
 
