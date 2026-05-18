@@ -25,7 +25,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private DriverService driverService;
 
@@ -44,11 +44,11 @@ public class UserController {
 
     @PostMapping("/register")
     public String registerUser(@RequestParam String name,
-                               @RequestParam String email,
-                               @RequestParam String phone,
-                               @RequestParam String password,
-                               @RequestParam(defaultValue = "Regular") String userType,
-                               Model model) {
+            @RequestParam String email,
+            @RequestParam String phone,
+            @RequestParam String password,
+            @RequestParam(defaultValue = "Regular") String userType,
+            Model model) {
 
         if (userService.emailExists(email)) {
             model.addAttribute("error", "Email already exists");
@@ -67,8 +67,8 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLoginPage(@RequestParam(required = false) String success,
-                                @RequestParam(required = false) String status,
-                                Model model) {
+            @RequestParam(required = false) String status,
+            Model model) {
         if ("registered".equals(success)) {
             model.addAttribute("message", "Registration successful! Please login.");
         }
@@ -80,13 +80,13 @@ public class UserController {
 
     @PostMapping("/login")
     public String loginUser(@RequestParam String email,
-                            @RequestParam String password,
-                            HttpSession session,
-                            Model model) {
+            @RequestParam String password,
+            HttpSession session,
+            Model model) {
 
         // Check passengers first
         Person loggedInPerson = userService.login(email, password);
-        
+
         // If not a passenger, check drivers
         if (loggedInPerson == null) {
             loggedInPerson = driverService.login(email, password);
@@ -145,7 +145,7 @@ public class UserController {
         if (user == null) {
             return "redirect:/login";
         }
-        
+
         // Refresh passenger from file to get card details
         if ("Passenger".equalsIgnoreCase(user.getRole())) {
             Passenger p = userService.getById(user.getId());
@@ -154,14 +154,14 @@ public class UserController {
         } else {
             model.addAttribute("user", user);
         }
-        
+
         return "users/profile";
     }
 
     @PostMapping("/update-payment")
     public String updatePayment(@RequestParam String cardNumber,
-                                @RequestParam String cardExpiry,
-                                HttpSession session) {
+            @RequestParam String cardExpiry,
+            HttpSession session) {
         Person currentUser = (Person) session.getAttribute("loggedInUser");
         if (currentUser != null && "Passenger".equalsIgnoreCase(currentUser.getRole())) {
             Passenger p = (Passenger) currentUser;
@@ -175,12 +175,12 @@ public class UserController {
 
     @PostMapping("/update-profile")
     public String updateProfile(@RequestParam String name,
-                                @RequestParam String phone,
-                                @RequestParam String email,
-                                @RequestParam(required = false) String licenseNumber,
-                                @RequestParam(required = false) String companyName,
-                                HttpSession session,
-                                Model model) {
+            @RequestParam String phone,
+            @RequestParam String email,
+            @RequestParam(required = false) String licenseNumber,
+            @RequestParam(required = false) String companyName,
+            HttpSession session,
+            Model model) {
         Person currentUser = (Person) session.getAttribute("loggedInUser");
 
         if (currentUser != null) {
@@ -199,6 +199,8 @@ public class UserController {
                     driver.setCompanyName(companyName);
                 }
                 driverService.update(driver);
+            } else if (currentUser instanceof Company) {
+                companyService.update((Company) currentUser);
             }
             session.setAttribute("loggedInUser", currentUser);
             model.addAttribute("message", "Profile updated successfully");
@@ -207,8 +209,9 @@ public class UserController {
         return "redirect:/profile?status=updated";
     }
 
-    // Note: /vehicle-profile moved to DriverController if it existed, or handled there.
-    
+    // Note: /vehicle-profile moved to DriverController if it existed, or handled
+    // there.
+
     // ==================== ADMIN OPERATIONS ====================
 
     @GetMapping("/view-users")
@@ -227,8 +230,8 @@ public class UserController {
 
     @GetMapping("/search-users")
     public String searchUsers(@RequestParam String query,
-                              Model model,
-                              HttpSession session) {
+            Model model,
+            HttpSession session) {
         Person user = (Person) session.getAttribute("loggedInUser");
         if (user == null) {
             return "redirect:/login";
@@ -260,10 +263,10 @@ public class UserController {
 
     @PostMapping("/update-user")
     public String updateUser(@RequestParam String id,
-                             @RequestParam String name,
-                             @RequestParam String email,
-                             @RequestParam String phone,
-                             HttpSession session) {
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam String phone,
+            HttpSession session) {
         Person currentUser = (Person) session.getAttribute("loggedInUser");
         if (currentUser == null) {
             return "redirect:/login";
@@ -289,6 +292,8 @@ public class UserController {
                 userService.delete(currentUser.getId());
             } else if (currentUser instanceof Driver) {
                 driverService.delete(currentUser.getId());
+            } else if (currentUser instanceof Company) {
+                companyService.delete(currentUser.getId());
             }
             session.invalidate();
         }
