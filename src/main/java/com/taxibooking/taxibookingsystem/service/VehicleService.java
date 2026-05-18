@@ -34,4 +34,41 @@ public class VehicleService extends BaseFileService<Vehicle> {
     public List<Vehicle> getVehiclesByOwnerId(String ownerId) {
         return getAll().stream().filter(v -> v.getOwnerId().equals(ownerId)).collect(Collectors.toList());
     }
+
+    public boolean isPlateNumberTaken(String plateNumber, String excludeVehicleId) {
+        return getAll().stream().anyMatch(v -> 
+            v.getPlateNumber().equalsIgnoreCase(plateNumber) && 
+            (excludeVehicleId == null || !v.getVehicleId().equals(excludeVehicleId))
+        );
+    }
+
+    public void validateVehicle(Vehicle vehicle) {
+        if (vehicle.getPlateNumber() == null || vehicle.getPlateNumber().trim().isEmpty()) {
+            throw new IllegalArgumentException("License plate cannot be empty");
+        }
+        
+        // Basic validation for Sri Lankan license plates (e.g. ABC-1234, WP ABC-1234, 123-4567)
+        // Accepts letters/numbers/spaces followed by a dash or space, and ends with 4 digits.
+        if (!vehicle.getPlateNumber().matches("^[A-Za-z0-9\\s]+[-\\s]\\d{4}$")) {
+            throw new IllegalArgumentException("Invalid license plate format. Expected format like 'ABC-1234' or 'WP ABC-1234'");
+        }
+    }
+
+    @Override
+    public void add(Vehicle item) {
+        validateVehicle(item);
+        if (isPlateNumberTaken(item.getPlateNumber(), null)) {
+            throw new IllegalArgumentException("License plate " + item.getPlateNumber() + " is already registered.");
+        }
+        super.add(item);
+    }
+
+    @Override
+    public void update(Vehicle updatedItem) {
+        validateVehicle(updatedItem);
+        if (isPlateNumberTaken(updatedItem.getPlateNumber(), updatedItem.getVehicleId())) {
+            throw new IllegalArgumentException("License plate " + updatedItem.getPlateNumber() + " is already registered by another vehicle.");
+        }
+        super.update(updatedItem);
+    }
 }
