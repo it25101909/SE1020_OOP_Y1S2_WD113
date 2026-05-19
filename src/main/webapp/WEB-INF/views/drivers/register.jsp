@@ -269,7 +269,6 @@
         <div class="form-side">
             <div class="logo-area">
                 <a href="${pageContext.request.contextPath}/">🚕 Zip<span>SL</span></a>
-                <a href="${pageContext.request.contextPath}/">Ã°Å¸Å¡â€¢ Zip<span>SL</span></a>
             </div>
             
             <h2>Partner Registration</h2>
