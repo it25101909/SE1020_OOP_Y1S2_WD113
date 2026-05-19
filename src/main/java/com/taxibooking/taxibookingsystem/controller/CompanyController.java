@@ -69,7 +69,18 @@ public class CompanyController {
         if (vehicleService != null) {
             for (int i = 0; i < count; i++) {
                 String vId = "V-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-                Vehicle v = new Vehicle(vId, ownerId, "AUTO-" + (i + 1), type + " Vehicle", type);
+                
+                // Generate a unique, random plate number matching the Sri Lankan format (e.g., CAB-1234)
+                String plateNumber;
+                do {
+                    char c1 = (char) ('A' + (int)(Math.random() * 26));
+                    char c2 = (char) ('A' + (int)(Math.random() * 26));
+                    char c3 = (char) ('A' + (int)(Math.random() * 26));
+                    int number = (int)(Math.random() * 9000) + 1000;
+                    plateNumber = "" + c1 + c2 + c3 + "-" + number;
+                } while (vehicleService.isPlateNumberTaken(plateNumber, null));
+
+                Vehicle v = new Vehicle(vId, ownerId, plateNumber, type + " Vehicle", type);
                 vehicleService.add(v);
             }
         }

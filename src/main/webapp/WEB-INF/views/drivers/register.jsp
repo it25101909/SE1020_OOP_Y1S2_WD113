@@ -325,7 +325,7 @@
 
                     <div class="form-group">
                         <label>Vehicle Plate Number</label>
-                        <input type="text" name="plateNumber" id="plateInput" placeholder="e.g. WP ABC-1234" required>
+                        <input type="text" name="plateNumber" id="plateInput" placeholder="e.g. WP ABC-1234" pattern="^[A-Za-z0-9\s]+[-\s]\d{4}$" title="Format must be like 'ABC-1234' or 'WP ABC-1234'" required>
                     </div>
                 </div>
 

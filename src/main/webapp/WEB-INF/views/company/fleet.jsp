@@ -354,7 +354,7 @@
                 </div>
                 <div class="form-group">
                     <label>License Plate</label>
-                    <input type="text" name="plateNumber" placeholder="e.g. WP ABC-1234" required>
+                    <input type="text" name="plateNumber" placeholder="e.g. WP ABC-1234" pattern="^[A-Za-z0-9\s]+[-\s]\d{4}$" title="Format must be like 'ABC-1234' or 'WP ABC-1234'" required>
                 </div>
                 <button type="submit" class="btn-submit">Add to Fleet</button>
             </form>
@@ -389,7 +389,7 @@
                             <div class="edit-inputs">
                                 <div class="form-group">
                                     <label>License Plate</label>
-                                    <input type="text" name="plateNumber" value="${v.plateNumber}" required>
+                                    <input type="text" name="plateNumber" value="${v.plateNumber}" pattern="^[A-Za-z0-9\s]+[-\s]\d{4}$" title="Format must be like 'ABC-1234' or 'WP ABC-1234'" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Model / Brand</label>
